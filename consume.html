@@ -19,6 +19,9 @@
               <input type="text" class="form-control" id="province" placeholder="จังหวัด" v-model="province_input" />
             </div>
             <button class="btn btn-primary mb-2" @click="clickSearchProvince()">ค้นหาอำเภอ</button>
+            <ul>
+              <li v-for="dist in district_lt">{{dist}}</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -30,13 +33,14 @@
           return {
             msg: "Consume Data",
             province_input: "",
+            district_lt: [],
             province: [],
           };
         },
         methods: {
           clickSearchProvince() {
-            var tmp = this.province["จังหวัด"];
-            console.log(tmp);
+            var district = this.province[this.province_input];
+            this.district_lt = Object.keys(district);
           },
         },
         mounted() {
